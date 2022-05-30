@@ -15,4 +15,13 @@ const y = x + 2
 
 console.log('Sum is '+y)
 
+const listLocations = (locations) => {
+  locations.forEach( (location) => {
+    console.log(location)    
+  });
+}
+
+const myLocations = ['Lavras da mangabeira', 'Juazeiro do Norte', 'Crato', 'Barbalha']
+listLocations(myLocations)
+
 console.log('Stopping')
