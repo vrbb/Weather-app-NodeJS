@@ -12,18 +12,6 @@ const address = process.argv[2]
 
 app.use(express.static(publicDirectoryPath))
 
-app.get('', (req, res) => {
-    res.send('<h1>Hello express!</h1>')
-})
-
-app.get('/help', (req,res) => {
-    res.send('<h1>Help page</h1>')
-})
-
-app.get('/about', (req,res) => {
-    res.send(htmlPage)
-})
-
 app.get('/weather',(req, res) => {
     
     // if (!address){
