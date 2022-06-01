@@ -24,6 +24,6 @@ const product = {
 // const label = product.label
 // const stock = product.stock
 
-const {label, stock} = product
+const {label: productLabel, stock, rating = 5} = product
 
-console.log(label, stock)
+console.log(productLabel, stock, rating)
