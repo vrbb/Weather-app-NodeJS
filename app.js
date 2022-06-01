@@ -10,12 +10,12 @@ if (!address){
 } else {
   console.log(process.argv)
   
-  geocode.geocode(address, (error, data) => {
+  geocode.geocode(address, (error, {latitude, longitude, location} = {} ) => {
     if (error) {
       return console.log('Error', error)
     } 
       
-    forecast.forecast(data.location, (error, data) => {
+    forecast.forecast(location, (error, data) => {
       if (error) {
         return console.log('Error', error)
       } 

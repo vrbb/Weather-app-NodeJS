@@ -2,16 +2,16 @@ const request = require('request')
 
 const forecast = (address, callback) => {
     const url = 'http://api.weatherstack.com/current?access_key=6951e9376fe92546452d018547e800ee&query=' + encodeURIComponent(address)
-    request({ url: url, json: true}, (error, response) => {
+    request({ url, json: true}, (error, {body} = {}) => {
         if (error) {
             callback('Unable to connect to weather service',undefined)
-        } else if (response.success) {
+        } else if (body.error) {
             callback({
-                data : JSON.parse(response.body)
+                data : body
                 
             }, undefined)
         } else {
-            callback(undefined, response.body.current)
+            callback(undefined, body.current)
         }
       
     })
