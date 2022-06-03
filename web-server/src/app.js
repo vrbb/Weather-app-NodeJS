@@ -23,7 +23,7 @@ app.use(express.static(publicDirectoryPath))
 app.get('',(req,res) => {
     res.render('index', {
         title: 'Weather App',
-        name : 'this is a name'
+        name : 'Victoria Bispo'
     })
 })
 
@@ -37,7 +37,9 @@ app.get('/about',(req,res) => {
 app.get('/help',(req,res) => {
     res.render('help', {
         title: 'HELP PAGE NOW',
-        describe : 'Please, help this page now!!'
+        describe : 'Please, help this page now!!',
+        name : 'Victoria Bispo'
+
     })
 })
 
@@ -66,6 +68,25 @@ app.get('/weather',(req, res) => {
 // app.com
 // app.com/help
 // app.com/about
+
+app.get('/help/*', (req,res) => {
+    res.render('help', {
+        title: 'PAGE 404',
+        describe : 'Help article not found',
+        name : 'Victoria Bispo'
+
+    })
+})
+
+app.get('*',(req,res) => {
+    res.render('help', {
+        title: 'PAGE 404',
+        describe : 'Page not found',
+        name : 'Victoria Bispo'
+
+    })
+})
+
 
 app.listen(3131, () => {
     console.log('Server is up on port 3131.')
