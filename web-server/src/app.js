@@ -8,9 +8,8 @@ const app = express()
 const publicDirectoryPath =  path.join(__dirname, '../public')
 const viewPath = path.join(__dirname,'../templates/views')
 const partialsPath = path.join(__dirname,'../templates/partials')
-// const htmlPage = require(dirName+'/index.html')
-// const geocode = require(dirName+'/utils/geocode.js')
-// const forecast = require(dirName+'/utils/forecast.js')
+const geocode = require(path.join(__dirname,'../utils/geocode.js'))
+const forecast = require(path.join(__dirname,'../utils/forecast.js'))
 
 // Stuup handlebars engine and views location
 app.set('view engine', 'hbs')
@@ -44,28 +43,25 @@ app.get('/help',(req,res) => {
 })
 
 app.get('/weather',(req, res) => {
-    
-    if (! req.query.address){
+    if (!req.query.address){
         return res.send({ 'Error': 'please, provide an address'})
     } 
-    res.send({
-        'Address' : req.query.address
-    })
-    // else {
-        
-    //     geocode.geocode(address, (error, {latitude, longitude, location} = {} ) => {
-    //     if (error) {
-    //         res.send({ 'Error': error})
-    //     } 
-                
-    //         forecast.forecast(location, (error, data) => {
-    //             if (error) {
-    //                 res.send({ 'Error': error})
-    //             } 
-    //         res.send({ 'Data': data})
-    //         })
-    //     })    
-    // }
+
+    const address = req.query.address
+
+    geocode.geocode(address, (error, {latitude, longitude, location} = {} ) => {
+        if (error) {
+            return res.send({ 'Error': error})
+        } 
+                    
+        forecast.forecast(location, (error, data) => {
+            if (error) {
+                return res.send({ 'Error': error})
+            } 
+            res.send({ 'Data': data})
+        })
+    })    
+    
     
 })
 
