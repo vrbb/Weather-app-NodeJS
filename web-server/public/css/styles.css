@@ -43,3 +43,16 @@ header a {
     width: 250px;
 }
 
+.img-temp {
+    display: block;
+}
+
+.weather p {
+    display: block;
+}
+
+.weather {
+    background-color: #9fdbe6b3;
+    font-family: Arial, Helvetica, sans-serif;
+
+}

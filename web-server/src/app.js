@@ -1,6 +1,8 @@
 const path = require('path')
 const express = require('express')
 const hbs = require('hbs')
+const geocode = require(path.join(__dirname,'../utils/geocode.js'))
+const forecast = require(path.join(__dirname,'../utils/forecast.js'))
 
 const app = express()
 
@@ -8,10 +10,8 @@ const app = express()
 const publicDirectoryPath =  path.join(__dirname, '../public')
 const viewPath = path.join(__dirname,'../templates/views')
 const partialsPath = path.join(__dirname,'../templates/partials')
-const geocode = require(path.join(__dirname,'../utils/geocode.js'))
-const forecast = require(path.join(__dirname,'../utils/forecast.js'))
 
-// Stuup handlebars engine and views location
+// Setup handlebars engine and views location
 app.set('view engine', 'hbs')
 app.set('views', viewPath)
 hbs.registerPartials(partialsPath)
@@ -51,14 +51,20 @@ app.get('/weather',(req, res) => {
 
     geocode.geocode(address, (error, {latitude, longitude, location} = {} ) => {
         if (error) {
-            return res.send({ 'Error': error})
+            return res.send({error: error})
         } 
                     
         forecast.forecast(location, (error, data) => {
             if (error) {
-                return res.send({ 'Error': error})
+                return res.send({error: error})
             } 
-            res.send({ 'Data': data})
+            console.log(data,location)
+            res.render('index',{
+                data, 
+                location,
+                title: 'Weather App',
+                name : 'Victoria Bispo' 
+            })
         })
     })    
     

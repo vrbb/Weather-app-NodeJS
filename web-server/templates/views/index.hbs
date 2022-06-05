@@ -5,12 +5,18 @@
         <title>Weather</title>
         <link rel="icon" href="/img/weather.png">
         <link rel="stylesheet" href="./css/styles.css"> 
-        <script src="/js/app.js"></script>
+        <script src="./js/app.js"></script>
     </head>
     <body>
         <div class="main-content">
             {{>header}}
             <p>Use this site to get your weather!</p>
+            <p>Hi! You are from {{location}}</p>
+            <div class="weather">
+               <img class="img-tem" src="{{data.weather_icons}}"><p>{{data.weather_descriptions}}</p>
+               <p>{{data.temperature}}˚C</p>
+               <p>{{data.precip}} % of precip</p>
+            </div> 
             <img class="portrait" src="/img/imgperfil.jpeg">
         </div>
         {{>footer}}
