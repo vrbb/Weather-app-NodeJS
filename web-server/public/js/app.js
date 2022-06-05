@@ -1,16 +1,19 @@
 console.log('Cliente side javascript file')
 
-fetch('http://puzzle.mead.io/puzzle').then((response) => {
-    response.json().then((data) => {
-        console.log(data)
-    })
-})
+const weatherForm = document.querySelector('form')
+const search = document.querySelector('input')
 
-fetch('http://localhost:3131/weather?address=Boston').then((response) => {
-    response.json().then((data) => {
-        if(data.error){
-            return console.log({'Error' : data.error})
-        }
-        console.log(data)
+weatherForm.addEventListener('submit', (e) => {
+    e.preventDefault()
+    
+    const location = search.value
+    fetch('http://localhost:3131/weather?address='+location).then((response) => {
+        response.json().then((data) => {
+            if(data.error){
+                return console.log({'Error' : data.error})
+            }
+            console.log(data)
+        })
     })
+    console.log(location)
 })

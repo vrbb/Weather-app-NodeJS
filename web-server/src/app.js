@@ -59,7 +59,7 @@ app.get('/weather',(req, res) => {
                 return res.send({error: error})
             } 
             console.log(data,location)
-            res.render('index',{
+            res.send({
                 data, 
                 location,
                 title: 'Weather App',
