@@ -11,7 +11,7 @@
         <div class="main-content">
             {{>header}}
             <p>Use this site to get your weather!</p>
-            <p>Hi! You are from {{location}}</p>
+            <p id="message-0"></p>
 
             <form>
                 <input placeholder="Location">
@@ -20,8 +20,8 @@
 
             <div class="weather">
                <img class="img-tem" src="{{data.weather_icons}}"><p>{{data.weather_descriptions}}</p>
-               <p>{{data.temperature}}˚C</p>
-               <p>{{data.precip}} % of precip</p>
+               <p id="message-1"></p>
+               <p id="message-2"></p>
             </div> 
             <img class="portrait" src="/img/imgperfil.jpeg">
         </div>
