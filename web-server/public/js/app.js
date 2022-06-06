@@ -17,7 +17,7 @@ weatherForm.addEventListener('submit', (e) => {
     fetch('http://localhost:3131/weather?address='+location).then((response) => {
         response.json().then((data) => {
             if(data.error){
-                messageOne.textContent = data.error
+                messageOne.textContent = data.data.error
             }
             console.log(data)
             messageOne.textContent = data.data.temperature+'˚C'
