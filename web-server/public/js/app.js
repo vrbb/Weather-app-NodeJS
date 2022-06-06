@@ -19,11 +19,12 @@ weatherForm.addEventListener('submit', (e) => {
             if(data.error){
                 messageOne.textContent = data.error
             }
-            messageOne.textContent = data.temperature+'˚C'
-            messageTwo.textContent = (data.precip)+'% of precip'
+            console.log(data)
+            messageOne.textContent = data.data.temperature+'˚C'
+            messageTwo.textContent = (data.data.precip)+'% of precip'
+            messageZero.textContent = 'Hi! You are from '+ data.location
         }) 
     })
-    messageZero.textContent = 'Hi! You are from '+ location
 
     console.log(location)
 })
